@@ -1,140 +1,155 @@
-/* Paleta de colores premium basada en el logo */
+/* PALETA DE COLORES OFICIAL ALQIMIA LUMA */
 :root {
-    --bg-fondo: #06060c;       /* Azul de medianoche casi negro */
-    --tarjeta-bg: #11111f;     /* Gris azulado profundo */
-    --color-oro: #d4af37;      /* Dorado místico */
-    --color-neon-cyan: #00e5ff;/* Cyan vibrante */
-    --color-neon-rosa: #ff007f;/* Rosa neón */
-    --color-texto: #e2e2e8;
+    --blanco-roto: #F2F0EF;  /* Fondo general */
+    --deep-indigo: #2B0071;  /* Textos principales, menús, footer */
+    --oro: #EFBF04;          /* Botones, cursores, interacciones */
+    --lavanda: #D3D3FF;      /* Detalles suaves y bordes de tarjeta */
 }
 
+/* TIPOGRAFÍA GENERAL */
 body {
-    background-color: var(--bg-fondo);
-    color: var(--color-texto);
-    font-family: 'Montserrat', sans-serif;
+    background-color: var(--blanco-roto);
+    color: var(--deep-indigo);
+    font-family: 'Josefin Sans', sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
 }
 
+/* MENÚ Y PIE DE PÁGINA */
+.barra-navegacion, .pie-pagina {
+    background-color: var(--deep-indigo);
+    color: var(--blanco-roto);
+    padding: 10px 0;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+.pie-pagina {
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+/* ENCABEZADO Y TÍTULOS */
 header {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    padding: 40px 20px;
+    padding: 40px 20px 20px 20px;
 }
 
 .logo-empresa {
-    width: 90px;
+    width: 100px;
     height: auto;
     border-radius: 50%;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 5px 15px rgba(43, 0, 113, 0.2);
+}
+
+h1, h2, .titulo-modal {
+    font-family: 'Playfair Display', serif;
+    color: var(--deep-indigo);
 }
 
 .titulo-gigante {
-    font-family: 'Cinzel', serif;
-    font-size: 3.2rem;
+    font-size: 3.5rem;
     margin: 0;
-    letter-spacing: 4px;
-    color: var(--color-oro);
-    text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    letter-spacing: 3px;
 }
 
+/* CATÁLOGO Y TARJETAS */
 .catalogo {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 35px;
-    padding: 20px 20px 60px 20px;
+    padding: 30px 20px;
 }
 
-/* Tarjeta base */
 .tarjeta {
-    background-color: var(--tarjeta-bg);
-    border: 1px solid #22223b;
-    border-radius: 16px;
+    background-color: #ffffff;
+    border: 2px solid var(--lavanda);
+    border-radius: 12px;
     padding: 25px;
     width: 280px;
     transition: all 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-/* Brillo neón vivo e iluminación al pasar el mouse */
+/* INTERACCIÓN (ORO) */
 .tarjeta:hover {
     transform: translateY(-8px);
-    border-color: var(--color-neon-rosa);
-    box-shadow: 0 0 25px rgba(255, 0, 127, 0.5);
+    border-color: var(--oro);
+    box-shadow: 0 10px 20px rgba(239, 191, 4, 0.15);
 }
 
 .tarjeta h2 {
     margin-top: 0;
-    font-size: 1.5rem;
-    color: #ffffff;
-    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
 }
 
 .imagen-placeholder {
     width: 100%;
     height: 200px;
-    background-color: #0b0b14;
+    background-color: var(--blanco-roto);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 8px;
     margin: 15px 0;
-    color: #555566;
-    border: 1px dashed #222;
+    color: var(--deep-indigo);
+    border: 1px dashed var(--lavanda);
 }
 
 .precio {
     font-size: 26px;
     font-weight: 600;
-    color: var(--color-neon-cyan);
+    color: var(--deep-indigo);
     margin: 10px 0;
 }
 
 .stock {
-    color: #8a8a9e;
+    color: #666;
     font-size: 14px;
     margin-bottom: 20px;
 }
 
+/* BOTONES (ORO) */
 button {
-    background-color: transparent;
-    color: var(--color-oro);
-    border: 2px solid var(--color-oro);
-    padding: 12px 20px;
+    background-color: var(--oro);
+    color: var(--deep-indigo);
+    border: none;
+    padding: 14px 20px;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     width: 100%;
     transition: 0.3s;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 button:hover:not([disabled]) {
-    background-color: var(--color-oro);
-    color: #000000;
-    box-shadow: 0 0 15px var(--color-oro);
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(239, 191, 4, 0.4);
 }
 
 button:disabled {
-    border-color: #444;
-    color: #555;
+    background-color: #e0e0e0;
+    color: #888;
     cursor: not-allowed;
 }
 
-/* EFECTO SELLO EN DIAGONAL CUANDO ESTÁ AGOTADO */
+/* EFECTO SELLO AGOTADO (DEEP INDIGO PARA MANTENER LA ELEGANCIA) */
 .tarjeta.agotado {
     position: relative;
-    overflow: hidden; /* Para que el sello no se salga de las esquinas redondeadas */
-    opacity: 0.5;
-    filter: grayscale(90%);
+    overflow: hidden;
+    opacity: 0.6;
 }
 
 .tarjeta.agotado::after {
@@ -143,35 +158,36 @@ button:disabled {
     top: 45%;
     left: -15%;
     width: 130%;
-    background-color: #e60026; /* Rojo vivo */
-    color: #ffffff;
-    font-size: 1.8rem;
-    font-weight: 800;
-    font-family: 'Montserrat', sans-serif;
+    background-color: var(--deep-indigo);
+    color: var(--oro);
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'Josefin Sans', sans-serif;
     transform: rotate(-25deg);
     text-align: center;
-    padding: 8px 0;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    padding: 10px 0;
+    box-shadow: 0 4px 15px rgba(43, 0, 113, 0.5);
     z-index: 5;
     pointer-events: none;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
 }
 
-/* Estilos de Carrito y Ventana Emergente */
+/* CARRITO FLOTANTE Y MODAL */
 #carrito-flotante {
     position: fixed;
-    top: 20px;
+    top: 60px; /* Ajustado para no tapar la barra superior */
     right: 20px;
-    background-color: var(--color-neon-rosa);
-    color: #ffffff;
+    background-color: var(--oro);
+    color: var(--deep-indigo);
     padding: 12px 25px;
     border-radius: 30px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
+    box-shadow: 0 4px 15px rgba(239, 191, 4, 0.4);
     z-index: 1000;
     transition: 0.3s;
+    border: 2px solid var(--deep-indigo);
 }
 
 #carrito-flotante:hover {
@@ -186,24 +202,23 @@ button:disabled {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(6px);
+    background-color: rgba(43, 0, 113, 0.7); /* Fondo modal Deep Indigo transparente */
+    backdrop-filter: blur(4px);
 }
 
 .modal-contenido {
-    background-color: #0b0b14;
+    background-color: var(--blanco-roto);
     margin: 12% auto;
     padding: 30px;
-    border: 2px solid var(--color-neon-cyan);
-    border-radius: 16px;
+    border-radius: 12px;
     width: 85%;
     max-width: 400px;
-    color: white;
-    box-shadow: 0 0 30px rgba(0, 229, 255, 0.25);
+    color: var(--deep-indigo);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .cerrar {
-    color: #888;
+    color: var(--deep-indigo);
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -211,13 +226,11 @@ button:disabled {
 }
 
 .cerrar:hover {
-    color: var(--color-neon-rosa);
+    color: var(--oro);
 }
 
 .titulo-modal {
-    font-family: 'Cinzel', serif;
-    color: var(--color-neon-cyan);
-    border-bottom: 1px solid #222;
+    border-bottom: 2px solid var(--lavanda);
     padding-bottom: 12px;
     margin-top: 0;
 }
@@ -227,26 +240,25 @@ button:disabled {
     justify-content: space-between;
     margin: 15px 0;
     font-size: 16px;
+    font-weight: 600;
 }
 
 .total-modal {
     font-size: 22px;
     font-weight: 600;
-    color: var(--color-neon-rosa);
-    border-top: 1px solid #222;
+    color: var(--deep-indigo);
+    border-top: 2px solid var(--lavanda);
     padding-top: 15px;
     margin-top: 25px;
 }
 
 .btn-whatsapp-modal {
-    background-color: #25D366;
-    color: white;
-    border: none;
+    background-color: var(--deep-indigo);
+    color: var(--blanco-roto);
     margin-top: 15px;
 }
 
 .btn-whatsapp-modal:hover {
-    background-color: #1ebe5d;
-    box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
-    color: white;
+    background-color: #1a0045;
+    box-shadow: 0 5px 15px rgba(43, 0, 113, 0.3);
 }

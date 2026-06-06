@@ -2,7 +2,6 @@ let carrito = {};
 let totalPrecio = 0;
 let totalArticulos = 0;
 
-// Lee de forma autónoma el archivo productos.json
 fetch('productos.json')
     .then(respuesta => respuesta.json())
     .then(datos => {
@@ -10,12 +9,10 @@ fetch('productos.json')
         contenedor.innerHTML = ""; 
         
         datos.forEach(producto => {
-            // Verifica si está agotado
             let esAgotado = producto.stock <= 0 ? "agotado" : "";
             
-            // Renderiza botón activo o deshabilitado según las existencias
             let botonHTML = producto.stock > 0 
-                ? `<button onclick="agregarAlCarrito('${producto.nombre}', ${producto.precio})">Añadir al carrito</button>`
+                ? `<button onclick="agregarAlCarrito('${producto.nombre}', ${producto.precio})">Comprar ahora</button>`
                 : `<button disabled>No disponible</button>`;
                 
             let textoStock = producto.stock > 0 ? `Disponibles: ${producto.stock}` : "Agotado";
@@ -37,7 +34,7 @@ function agregarAlCarrito(nombre, precio) {
     if (carrito[nombre]) {
         carrito[nombre].cantidad += 1;
     } else {
-        carrito[nombre] = { precio: precio, bandwidth: 1, cantidad: 1 };
+        carrito[nombre] = { precio: precio, cantidad: 1 };
     }
     totalPrecio += precio;
     totalArticulos += 1;
@@ -50,7 +47,7 @@ function abrirCarrito() {
     divLista.innerHTML = ""; 
     
     if (totalArticulos === 0) {
-        divLista.innerHTML = "<p style='color:#777;'>Tu carrito está vacío.</p>";
+        divLista.innerHTML = "<p>Tu carrito está vacío.</p>";
     } else {
         for (let nombre in carrito) {
             let item = carrito[nombre];
@@ -76,7 +73,7 @@ function enviarPedido() {
         return;
     }
 
-    let mensaje = "¡Hola! Quiero hacer un pedido desde la página de Alquimia Luma:%0A%0A";
+    let mensaje = "¡Hola! Quiero hacer un pedido desde la página de Alqimia Luma:%0A%0A";
     for (let nombre in carrito) {
         let item = carrito[nombre];
         mensaje += `✅ ${item.cantidad}x ${nombre} ($${item.precio * item.cantidad})%0A`;
@@ -84,8 +81,7 @@ function enviarPedido() {
     mensaje += "%0A*Total a pagar: $" + totalPrecio + "*";
     
     // --- IMPORTANTE: REEMPLAZA ESTE TEXTO POR TU NÚMERO DE WHATSAPP ---
-    // Coloca tu número de 10 dígitos conservando el 52 de México. Ejemplo: "522221234567"
-    let numeroWhatsApp = "525649314335"; 
+    let numeroWhatsApp = "522221234567"; 
     
     window.open("https://wa.me/" + numeroWhatsApp + "?text=" + mensaje, "_blank");
 }

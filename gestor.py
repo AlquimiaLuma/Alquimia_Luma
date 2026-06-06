@@ -12,7 +12,7 @@ def guardar_datos(datos):
         json.dump(datos, f, indent=4, ensure_ascii=False)
 
 def mostrar_inventario(datos):
-    print("\n--- INVENTARIO ALQUIMIA LUMA ---")
+    print("\n--- INVENTARIO ALQIMIA LUMA ---")
     for i, prod in enumerate(datos):
         estado_stock = f"{prod['stock']} uds" if prod['stock'] > 0 else "🚫 AGOTADO"
         print(f"ID: {i} | {prod['nombre']} | Precio: ${prod['precio']} | Inventario: {estado_stock}")

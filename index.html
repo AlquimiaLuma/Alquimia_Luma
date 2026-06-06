@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alquimia Luma | Perfumes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Alqimia Luma | Perfumes</title>
+    <!-- Nuevas tipografías: Playfair Display (Títulos) y Josefin Sans (Textos) -->
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- Menú de navegación visual (Deep Indigo) -->
+    <nav class="barra-navegacion">
+        <p>ENVÍOS INMEDIATOS - CALIDAD PREMIUM</p>
+    </nav>
+
+    <!-- Carrito superior derecho -->
     <div id="carrito-flotante" onclick="abrirCarrito()">
         🛒 Carrito (<span id="contador">0</span>)
     </div>
 
+    <!-- Ventana Emergente Resumen del Carrito -->
     <div id="modal-carrito" class="modal">
         <div class="modal-contenido">
             <span class="cerrar" onclick="cerrarCarrito()">&times;</span>
@@ -24,11 +32,16 @@
     </div>
 
     <header>
-        <img src="1000096795.png" alt="Logo Alquimia Luma" class="logo-empresa">
-        <h1 class="titulo-gigante">ALQUIMIA LUMA</h1>
+        <img src="1000096795.png" alt="Logo Alqimia Luma" class="logo-empresa">
+        <h1 class="titulo-gigante">ALQIMIA LUMA</h1>
     </header>
 
     <div class="catalogo" id="contenedor-catalogo"></div>
+
+    <!-- Pie de página (Deep Indigo) -->
+    <footer class="pie-pagina">
+        <p>&copy; 2026 Alqimia Luma. Todos los derechos reservados.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
