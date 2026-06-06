@@ -2,8 +2,8 @@
     {
         "id": 1,
         "nombre": "Perfume Elegance",
-        "precio": 750,
-        "stock": 0,
+        "precio": 720,
+        "stock": 5,
         "desc": "Aroma dulce y encantador, con notas de vainilla y madera. Perfecto para destacar.",
         "imagen": "📸 Foto del Perfume"
     },
