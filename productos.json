@@ -10,8 +10,8 @@
     {
         "id": 2,
         "nombre": "Perfume Night",
-        "precio": 750,
-        "stock": 3,
+        "precio": 700,
+        "stock": 5,
         "desc": "Intenso y fresco, ideal para uso diario o para una salida en la noche.",
         "imagen": "📸 Foto del Perfume"
     }
