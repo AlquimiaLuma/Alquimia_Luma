@@ -1,25 +1,66 @@
-/* PALETA DE COLORES OFICIAL ALQIMIA LUMA */
 :root {
-    --blanco-roto: #F2F0EF;  /* Fondo general */
-    --deep-indigo: #2B0071;  /* Textos principales, menús, footer */
-    --oro: #EFBF04;          /* Botones, cursores, interacciones */
-    --lavanda: #D3D3FF;      /* Detalles suaves y bordes de tarjeta */
+    --pergamino: #F1E9D2;    
+    --pergamino-oscuro: #dfd6bc; /* Para dar profundidad */
+    --deep-indigo: #2B0071;  
+    --oro: #EFBF04;          
+    --lavanda: #D3D3FF;      
 }
 
-/* TIPOGRAFÍA GENERAL */
 body {
-    background-color: var(--blanco-roto);
+    /* Degradado radial para que parezca iluminado en el centro */
+    background: radial-gradient(circle at top center, var(--pergamino) 0%, var(--pergamino-oscuro) 100%);
     color: var(--deep-indigo);
     font-family: 'Josefin Sans', sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
+    position: relative;
+    overflow-x: hidden; /* Evita barras de desplazamiento raras */
 }
 
-/* MENÚ Y PIE DE PÁGINA */
+/* --- EFECTOS DE PROFUNDIDAD Y DESTELLOS (PURO CÓDIGO) --- */
+.fondo-magico {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    /* Un patrón sutil de puntos para dar textura de papel viejo/mágico */
+    background-image: radial-gradient(var(--lavanda) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.3;
+}
+
+.destello {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    pointer-events: none;
+    animation: flotar 8s infinite alternate;
+}
+
+.destello-1 {
+    width: 300px; height: 300px;
+    background-color: rgba(239, 191, 4, 0.15); /* Brillo dorado */
+    top: 10%; left: 10%;
+}
+
+.destello-2 {
+    width: 400px; height: 400px;
+    background-color: rgba(43, 0, 113, 0.1); /* Brillo índigo */
+    bottom: 20%; right: 5%;
+    animation-delay: 2s;
+}
+
+@keyframes flotar {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(30px) scale(1.1); }
+}
+/* -------------------------------------------------------- */
+
 .barra-navegacion, .pie-pagina {
     background-color: var(--deep-indigo);
-    color: var(--blanco-roto);
+    color: var(--pergamino);
     padding: 10px 0;
     font-size: 0.9rem;
     letter-spacing: 2px;
@@ -30,7 +71,6 @@ body {
     margin-top: 40px;
 }
 
-/* ENCABEZADO Y TÍTULOS */
 header {
     display: flex;
     justify-content: center;
@@ -40,10 +80,11 @@ header {
 }
 
 .logo-empresa {
-    width: 100px;
+    width: 120px;
     height: auto;
     border-radius: 50%;
-    box-shadow: 0 5px 15px rgba(43, 0, 113, 0.2);
+    box-shadow: 0 8px 20px rgba(43, 0, 113, 0.4);
+    border: 3px solid var(--oro); /* Borde dorado al logo */
 }
 
 h1, h2, .titulo-modal {
@@ -52,38 +93,40 @@ h1, h2, .titulo-modal {
 }
 
 .titulo-gigante {
-    font-size: 3.5rem;
+    font-size: 3.8rem;
     margin: 0;
     letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
-/* CATÁLOGO Y TARJETAS */
 .catalogo {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 35px;
+    gap: 40px;
     padding: 30px 20px;
 }
 
 .tarjeta {
-    background-color: #ffffff;
-    border: 2px solid var(--lavanda);
+    background-color: rgba(255, 255, 255, 0.85);
+    /* BORDE ESTILO MARCO ELEGANTE */
+    border: 6px double var(--lavanda);
     border-radius: 12px;
     padding: 25px;
     width: 280px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.4s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    backdrop-filter: blur(10px);
+    /* SOMBRA PROFUNDA */
+    box-shadow: 0 15px 35px rgba(43, 0, 113, 0.15), inset 0 0 15px rgba(239, 191, 4, 0.05);
 }
 
-/* INTERACCIÓN (ORO) */
 .tarjeta:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
     border-color: var(--oro);
-    box-shadow: 0 10px 20px rgba(239, 191, 4, 0.15);
+    box-shadow: 0 20px 40px rgba(43, 0, 113, 0.25), inset 0 0 20px rgba(239, 191, 4, 0.15);
 }
 
 .tarjeta h2 {
@@ -94,14 +137,15 @@ h1, h2, .titulo-modal {
 .imagen-placeholder {
     width: 100%;
     height: 200px;
-    background-color: var(--blanco-roto);
+    background-color: var(--pergamino);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
     margin: 15px 0;
     color: var(--deep-indigo);
-    border: 1px dashed var(--lavanda);
+    border: 1px dashed var(--deep-indigo);
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.05);
 }
 
 .precio {
@@ -117,7 +161,6 @@ h1, h2, .titulo-modal {
     margin-bottom: 20px;
 }
 
-/* BOTONES (ORO) */
 button {
     background-color: var(--oro);
     color: var(--deep-indigo);
@@ -132,24 +175,25 @@ button {
     font-family: 'Josefin Sans', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(239, 191, 4, 0.3);
 }
 
 button:hover:not([disabled]) {
-    transform: scale(1.03);
-    box-shadow: 0 5px 15px rgba(239, 191, 4, 0.4);
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(239, 191, 4, 0.5);
 }
 
 button:disabled {
-    background-color: #e0e0e0;
+    background-color: #dcdcdc;
     color: #888;
     cursor: not-allowed;
+    box-shadow: none;
 }
 
-/* EFECTO SELLO AGOTADO (DEEP INDIGO PARA MANTENER LA ELEGANCIA) */
 .tarjeta.agotado {
     position: relative;
     overflow: hidden;
-    opacity: 0.6;
+    opacity: 0.7;
 }
 
 .tarjeta.agotado::after {
@@ -172,10 +216,9 @@ button:disabled {
     letter-spacing: 4px;
 }
 
-/* CARRITO FLOTANTE Y MODAL */
 #carrito-flotante {
     position: fixed;
-    top: 60px; /* Ajustado para no tapar la barra superior */
+    top: 60px;
     right: 20px;
     background-color: var(--oro);
     color: var(--deep-indigo);
@@ -184,7 +227,7 @@ button:disabled {
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(239, 191, 4, 0.4);
+    box-shadow: 0 8px 20px rgba(43, 0, 113, 0.2);
     z-index: 1000;
     transition: 0.3s;
     border: 2px solid var(--deep-indigo);
@@ -202,19 +245,20 @@ button:disabled {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(43, 0, 113, 0.7); /* Fondo modal Deep Indigo transparente */
-    backdrop-filter: blur(4px);
+    background-color: rgba(43, 0, 113, 0.8); 
+    backdrop-filter: blur(6px);
 }
 
 .modal-contenido {
-    background-color: var(--blanco-roto);
+    background-color: var(--pergamino);
     margin: 12% auto;
     padding: 30px;
+    border: 4px double var(--lavanda);
     border-radius: 12px;
     width: 85%;
     max-width: 400px;
     color: var(--deep-indigo);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
 .cerrar {
@@ -254,11 +298,12 @@ button:disabled {
 
 .btn-whatsapp-modal {
     background-color: var(--deep-indigo);
-    color: var(--blanco-roto);
+    color: var(--pergamino);
     margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(43, 0, 113, 0.3);
 }
 
 .btn-whatsapp-modal:hover {
     background-color: #1a0045;
-    box-shadow: 0 5px 15px rgba(43, 0, 113, 0.3);
+    box-shadow: 0 5px 15px rgba(43, 0, 113, 0.5);
 }

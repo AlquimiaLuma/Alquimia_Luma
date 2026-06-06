@@ -4,30 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alqimia Luma | Perfumes</title>
-    <!-- Nuevas tipografías: Playfair Display (Títulos) y Josefin Sans (Textos) -->
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Menú de navegación visual (Deep Indigo) -->
+    <!-- Efectos de profundidad creados con código -->
+    <div class="fondo-magico"></div>
+    <div class="destello destello-1"></div>
+    <div class="destello destello-2"></div>
+
     <nav class="barra-navegacion">
         <p>ENVÍOS INMEDIATOS - CALIDAD PREMIUM</p>
     </nav>
 
-    <!-- Carrito superior derecho -->
     <div id="carrito-flotante" onclick="abrirCarrito()">
-        🛒 Carrito (<span id="contador">0</span>)
+        🌙 Pedido (<span id="contador">0</span>)
     </div>
 
-    <!-- Ventana Emergente Resumen del Carrito -->
     <div id="modal-carrito" class="modal">
         <div class="modal-contenido">
             <span class="cerrar" onclick="cerrarCarrito()">&times;</span>
-            <h2 class="titulo-modal">Tu Pedido</h2>
+            <h2 class="titulo-modal">Tu Pedido Mágico</h2>
             <div id="lista-carrito"></div>
             <p class="total-modal">Total: $<span id="total-precio">0</span></p>
-            <button class="btn-whatsapp-modal" onclick="enviarPedido()">Terminar compra en WhatsApp 📲</button>
+            <button class="btn-whatsapp-modal" onclick="enviarPedido()">Terminar pedido en WhatsApp 📲</button>
         </div>
     </div>
 
@@ -38,7 +39,6 @@
 
     <div class="catalogo" id="contenedor-catalogo"></div>
 
-    <!-- Pie de página (Deep Indigo) -->
     <footer class="pie-pagina">
         <p>&copy; 2026 Alqimia Luma. Todos los derechos reservados.</p>
     </footer>
