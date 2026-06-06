@@ -2,7 +2,7 @@ let carrito = {};
 let totalPrecio = 0;
 let totalArticulos = 0;
 
-// Aquí la página lee tu base de datos automáticamente
+// Lee de forma autónoma el archivo productos.json
 fetch('productos.json')
     .then(respuesta => respuesta.json())
     .then(datos => {
@@ -10,19 +10,26 @@ fetch('productos.json')
         contenedor.innerHTML = ""; 
         
         datos.forEach(producto => {
-            // Solo dibuja el producto si hay stock mayor a 0
-            if(producto.stock > 0) {
-                contenedor.innerHTML += `
-                    <div class="tarjeta">
-                        <h2>${producto.nombre}</h2>
-                        <div class="imagen-placeholder">${producto.imagen}</div>
-                        <p class="desc">${producto.desc}</p>
-                        <p class="precio">$${producto.precio}</p>
-                        <p class="stock">Disponibles: ${producto.stock}</p>
-                        <button onclick="agregarAlCarrito('${producto.nombre}', ${producto.precio})">Añadir al carrito</button>
-                    </div>
-                `;
-            }
+            // Verifica si está agotado
+            let esAgotado = producto.stock <= 0 ? "agotado" : "";
+            
+            // Renderiza botón activo o deshabilitado según las existencias
+            let botonHTML = producto.stock > 0 
+                ? `<button onclick="agregarAlCarrito('${producto.nombre}', ${producto.precio})">Añadir al carrito</button>`
+                : `<button disabled>No disponible</button>`;
+                
+            let textoStock = producto.stock > 0 ? `Disponibles: ${producto.stock}` : "Agotado";
+
+            contenedor.innerHTML += `
+                <div class="tarjeta ${esAgotado}">
+                    <h2>${producto.nombre}</h2>
+                    <div class="imagen-placeholder">${producto.imagen}</div>
+                    <p class="desc">${producto.desc}</p>
+                    <p class="precio">$${producto.precio}</p>
+                    <p class="stock">${textoStock}</p>
+                    ${botonHTML}
+                </div>
+            `;
         });
     });
 
@@ -30,11 +37,12 @@ function agregarAlCarrito(nombre, precio) {
     if (carrito[nombre]) {
         carrito[nombre].cantidad += 1;
     } else {
-        carrito[nombre] = { precio: precio, cantidad: 1 };
+        carrito[nombre] = { precio: precio, bandwidth: 1, cantidad: 1 };
     }
     totalPrecio += precio;
     totalArticulos += 1;
     document.getElementById("contador").innerText = totalArticulos;
+    alert("¡Agregaste " + nombre + " al carrito!");
 }
 
 function abrirCarrito() {
@@ -42,7 +50,7 @@ function abrirCarrito() {
     divLista.innerHTML = ""; 
     
     if (totalArticulos === 0) {
-        divLista.innerHTML = "<p>Tu carrito está vacío.</p>";
+        divLista.innerHTML = "<p style='color:#777;'>Tu carrito está vacío.</p>";
     } else {
         for (let nombre in carrito) {
             let item = carrito[nombre];
@@ -63,7 +71,10 @@ function cerrarCarrito() {
 }
 
 function enviarPedido() {
-    if (totalArticulos === 0) return;
+    if (totalArticulos === 0) {
+        alert("Agrega productos antes de enviar tu pedido.");
+        return;
+    }
 
     let mensaje = "¡Hola! Quiero hacer un pedido desde la página de Alquimia Luma:%0A%0A";
     for (let nombre in carrito) {
@@ -72,7 +83,9 @@ function enviarPedido() {
     }
     mensaje += "%0A*Total a pagar: $" + totalPrecio + "*";
     
-    // CAMBIA ESTO POR TU NÚMERO DE WHATSAPP
-    let numeroWhatsApp = "TU_NUMERO_AQUI"; 
+    // --- IMPORTANTE: REEMPLAZA ESTE TEXTO POR TU NÚMERO DE WHATSAPP ---
+    // Coloca tu número de 10 dígitos conservando el 52 de México. Ejemplo: "522221234567"
+    let numeroWhatsApp = "525649314335"; 
+    
     window.open("https://wa.me/" + numeroWhatsApp + "?text=" + mensaje, "_blank");
 }

@@ -1,114 +1,183 @@
+/* Paleta de colores premium basada en el logo */
+:root {
+    --bg-fondo: #06060c;       /* Azul de medianoche casi negro */
+    --tarjeta-bg: #11111f;     /* Gris azulado profundo */
+    --color-oro: #d4af37;      /* Dorado místico */
+    --color-neon-cyan: #00e5ff;/* Cyan vibrante */
+    --color-neon-rosa: #ff007f;/* Rosa neón */
+    --color-texto: #e2e2e8;
+}
+
 body {
-    background-color: #050505;
-    color: #ffffff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-fondo);
+    color: var(--color-texto);
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
 }
+
 header {
-    padding: 30px 20px 10px 20px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    gap: 20px;
+    padding: 40px 20px;
 }
+
 .logo-empresa {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    width: 90px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }
+
 .titulo-gigante {
-    font-size: 3.5rem;
+    font-family: 'Cinzel', serif;
+    font-size: 3.2rem;
     margin: 0;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    text-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff;
+    letter-spacing: 4px;
+    color: var(--color-oro);
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
 }
+
 .catalogo {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 35px;
-    padding: 40px 20px;
+    padding: 20px 20px 60px 20px;
 }
+
+/* Tarjeta base */
 .tarjeta {
-    background-color: #121212;
-    border: 2px solid #333;
-    border-radius: 15px;
+    background-color: var(--tarjeta-bg);
+    border: 1px solid #22223b;
+    border-radius: 16px;
     padding: 25px;
     width: 280px;
     transition: all 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
 }
+
+/* Brillo neón vivo e iluminación al pasar el mouse */
 .tarjeta:hover {
-    transform: translateY(-10px);
-    border-color: #ff007f;
-    box-shadow: 0 0 25px rgba(255, 0, 127, 0.7);
+    transform: translateY(-8px);
+    border-color: var(--color-neon-rosa);
+    box-shadow: 0 0 25px rgba(255, 0, 127, 0.5);
 }
+
 .tarjeta h2 {
     margin-top: 0;
-    color: #00e5ff;
+    font-size: 1.5rem;
+    color: #ffffff;
+    font-family: 'Cinzel', serif;
 }
+
 .imagen-placeholder {
     width: 100%;
     height: 200px;
-    background-color: #1a1a1a;
+    background-color: #0b0b14;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
     margin: 15px 0;
-    color: #666;
+    color: #555566;
+    border: 1px dashed #222;
 }
+
 .precio {
-    font-size: 28px;
-    font-weight: bold;
-    color: #ff007f;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--color-neon-cyan);
     margin: 10px 0;
 }
+
 .stock {
-    color: #888888;
+    color: #8a8a9e;
     font-size: 14px;
     margin-bottom: 20px;
 }
+
 button {
     background-color: transparent;
-    color: #00e5ff;
-    border: 2px solid #00e5ff;
+    color: var(--color-oro);
+    border: 2px solid var(--color-oro);
     padding: 12px 20px;
     border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 15px;
+    font-weight: 600;
     cursor: pointer;
     width: 100%;
     transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
 }
-button:hover {
-    background-color: #00e5ff;
+
+button:hover:not([disabled]) {
+    background-color: var(--color-oro);
     color: #000000;
-    box-shadow: 0 0 15px #00e5ff;
+    box-shadow: 0 0 15px var(--color-oro);
 }
+
+button:disabled {
+    border-color: #444;
+    color: #555;
+    cursor: not-allowed;
+}
+
+/* EFECTO SELLO EN DIAGONAL CUANDO ESTÁ AGOTADO */
+.tarjeta.agotado {
+    position: relative;
+    overflow: hidden; /* Para que el sello no se salga de las esquinas redondeadas */
+    opacity: 0.5;
+    filter: grayscale(90%);
+}
+
+.tarjeta.agotado::after {
+    content: "AGOTADO";
+    position: absolute;
+    top: 45%;
+    left: -15%;
+    width: 130%;
+    background-color: #e60026; /* Rojo vivo */
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: 'Montserrat', sans-serif;
+    transform: rotate(-25deg);
+    text-align: center;
+    padding: 8px 0;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    z-index: 5;
+    pointer-events: none;
+    letter-spacing: 2px;
+}
+
+/* Estilos de Carrito y Ventana Emergente */
 #carrito-flotante {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #ff007f;
+    background-color: var(--color-neon-rosa);
     color: #ffffff;
     padding: 12px 25px;
     border-radius: 30px;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
+    box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
     z-index: 1000;
     transition: 0.3s;
 }
+
 #carrito-flotante:hover {
     transform: scale(1.05);
 }
+
 .modal {
     display: none; 
     position: fixed;
@@ -117,56 +186,67 @@ button:hover {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(6px);
 }
+
 .modal-contenido {
-    background-color: #111;
-    margin: 10% auto;
+    background-color: #0b0b14;
+    margin: 12% auto;
     padding: 30px;
-    border: 2px solid #00e5ff;
-    border-radius: 15px;
-    width: 80%;
+    border: 2px solid var(--color-neon-cyan);
+    border-radius: 16px;
+    width: 85%;
     max-width: 400px;
     color: white;
-    box-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.25);
 }
+
 .cerrar {
-    color: #aaa;
+    color: #888;
     float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
 }
+
 .cerrar:hover {
-    color: #ff007f;
+    color: var(--color-neon-rosa);
 }
+
 .titulo-modal {
-    color: #00e5ff;
-    border-bottom: 1px solid #333;
-    padding-bottom: 10px;
+    font-family: 'Cinzel', serif;
+    color: var(--color-neon-cyan);
+    border-bottom: 1px solid #222;
+    padding-bottom: 12px;
+    margin-top: 0;
 }
+
 .item-carrito {
     display: flex;
     justify-content: space-between;
     margin: 15px 0;
     font-size: 16px;
 }
+
 .total-modal {
     font-size: 22px;
-    font-weight: bold;
-    color: #ff007f;
-    border-top: 1px solid #333;
+    font-weight: 600;
+    color: var(--color-neon-rosa);
+    border-top: 1px solid #222;
     padding-top: 15px;
-    margin-top: 20px;
+    margin-top: 25px;
 }
+
 .btn-whatsapp-modal {
     background-color: #25D366;
     color: white;
     border: none;
-    margin-top: 20px;
+    margin-top: 15px;
 }
+
 .btn-whatsapp-modal:hover {
     background-color: #1ebe5d;
-    box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+    color: white;
 }

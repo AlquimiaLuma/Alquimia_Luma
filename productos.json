@@ -2,16 +2,16 @@
     {
         "id": 1,
         "nombre": "Perfume Elegance",
-        "precio": 700,
+        "precio": 750,
         "stock": 2,
-        "desc": "Aroma dulce y encantador, con notas de vainilla y madera.",
+        "desc": "Aroma dulce y encantador, con notas de vainilla y madera. Perfecto para destacar.",
         "imagen": "📸 Foto del Perfume"
     },
     {
         "id": 2,
         "nombre": "Perfume Night",
         "precio": 750,
-        "stock": 4,
+        "stock": 0,
         "desc": "Intenso y fresco, ideal para uso diario o para una salida en la noche.",
         "imagen": "📸 Foto del Perfume"
     }

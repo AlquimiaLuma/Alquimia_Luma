@@ -14,7 +14,8 @@ def guardar_datos(datos):
 def mostrar_inventario(datos):
     print("\n--- INVENTARIO ALQUIMIA LUMA ---")
     for i, prod in enumerate(datos):
-        print(f"ID: {i} | {prod['nombre']} | Precio: ${prod['precio']} | Disponibles: {prod['stock']}")
+        estado_stock = f"{prod['stock']} uds" if prod['stock'] > 0 else "🚫 AGOTADO"
+        print(f"ID: {i} | {prod['nombre']} | Precio: ${prod['precio']} | Inventario: {estado_stock}")
     print("--------------------------------\n")
 
 def main():
@@ -36,13 +37,11 @@ def main():
         elif opcion == '2':
             print("\n-- AGREGAR PERFUME --")
             nombre = input("Nombre del perfume: ")
-            
-            # Protección para asegurar que pongan números
             try:
                 precio = int(input("Precio de venta (solo número): "))
                 stock = int(input("Cantidad disponible (solo número): "))
             except ValueError:
-                print("❌ Error: El precio y el stock deben ser números enteros. Se canceló el registro.\n")
+                print("❌ Error: El precio y el stock deben ser números enteros. Se canceló.\n")
                 continue
                 
             desc = input("Descripción corta: ")
@@ -72,25 +71,25 @@ def main():
                     guardar_datos(datos)
                     print(f"✅ ¡{datos[idx]['nombre']} actualizado!\n")
                 else:
-                    print("❌ Ese número de ID no existe en el inventario.\n")
+                    print("❌ Ese número de ID no existe.\n")
             except ValueError:
-                print("❌ Error: Debes escribir únicamente un número.\n")
+                print("❌ Error: Escribe únicamente números.\n")
                 
         elif opcion == '4':
             mostrar_inventario(datos)
             try:
-                idx = int(input("Escribe solo el número (ID) del perfume que quieres borrar: "))
+                idx = int(input("Escribe el ID del perfume que quieres borrar: "))
                 if 0 <= idx < len(datos):
                     eliminado = datos.pop(idx)
                     guardar_datos(datos)
-                    print(f"🗑️ ¡{eliminado['nombre']} eliminado por completo!\n")
+                    print(f"🗑️ ¡{eliminado['nombre']} eliminado del catálogo!\n")
                 else:
-                    print("❌ Ese número de ID no existe en el inventario.\n")
+                    print("❌ Ese número de ID no existe.\n")
             except ValueError:
-                print("❌ Error: Debes escribir únicamente un número.\n")
+                print("❌ Error: Escribe únicamente números.\n")
                 
         elif opcion == '5':
-            print("\nConectando con GitHub... espera unos segundos.")
+            print("\nConectando con GitHub... subiendo actualizaciones...")
             os.system("git add .")
             os.system('git commit -m "Actualizacion automatica de inventario"')
             os.system("git push")
