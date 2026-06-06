@@ -2,14 +2,33 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Tienda de Perfumes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alquimia Luma | Perfumes</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Mis Perfumes</h1>
-    <div id="catalogo">
-        <!-- Aquí irán nuestros perfumes -->
+
+    <div id="carrito-flotante" onclick="abrirCarrito()">
+        🛒 Carrito (<span id="contador">0</span>)
     </div>
+
+    <div id="modal-carrito" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarCarrito()">&times;</span>
+            <h2 class="titulo-modal">Tu Pedido</h2>
+            <div id="lista-carrito"></div>
+            <p class="total-modal">Total: $<span id="total-precio">0</span></p>
+            <button class="btn-whatsapp-modal" onclick="enviarPedido()">Terminar compra en WhatsApp 📲</button>
+        </div>
+    </div>
+
+    <header>
+        <div class="imagen-placeholder logo-empresa">📸 Espacio para Logo</div>
+        <h1 class="titulo-gigante">ALQUIMIA LUMA</h1>
+    </header>
+
+    <div class="catalogo" id="contenedor-catalogo"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
