@@ -1,13 +1,12 @@
 :root {
     --pergamino: #F1E9D2;    
-    --pergamino-oscuro: #dfd6bc; /* Para dar profundidad */
+    --pergamino-oscuro: #e3d9be; 
     --deep-indigo: #2B0071;  
     --oro: #EFBF04;          
     --lavanda: #D3D3FF;      
 }
 
 body {
-    /* Degradado radial para que parezca iluminado en el centro */
     background: radial-gradient(circle at top center, var(--pergamino) 0%, var(--pergamino-oscuro) 100%);
     color: var(--deep-indigo);
     font-family: 'Josefin Sans', sans-serif;
@@ -15,60 +14,73 @@ body {
     padding: 0;
     text-align: center;
     position: relative;
-    overflow-x: hidden; /* Evita barras de desplazamiento raras */
+    overflow-x: hidden; 
 }
 
-/* --- EFECTOS DE PROFUNDIDAD Y DESTELLOS (PURO CÓDIGO) --- */
+/* --- POLVO DE ESTRELLAS Y MAGIA --- */
 .fondo-magico {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none;
     z-index: -1;
-    /* Un patrón sutil de puntos para dar textura de papel viejo/mágico */
-    background-image: radial-gradient(var(--lavanda) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background-image: 
+        radial-gradient(var(--oro) 1.5px, transparent 1.5px),
+        radial-gradient(var(--lavanda) 1px, transparent 1px);
+    background-size: 50px 50px, 35px 35px;
+    background-position: 0 0, 15px 15px;
     opacity: 0.3;
+    animation: titilar 4s infinite alternate;
+}
+
+@keyframes titilar {
+    0% { opacity: 0.15; }
+    100% { opacity: 0.4; }
 }
 
 .destello {
     position: fixed;
     border-radius: 50%;
-    filter: blur(80px);
+    filter: blur(90px);
     z-index: -1;
     pointer-events: none;
     animation: flotar 8s infinite alternate;
 }
 
 .destello-1 {
-    width: 300px; height: 300px;
-    background-color: rgba(239, 191, 4, 0.15); /* Brillo dorado */
-    top: 10%; left: 10%;
+    width: 350px; height: 350px;
+    background-color: rgba(239, 191, 4, 0.15); 
+    top: -5%; left: -5%;
 }
 
 .destello-2 {
-    width: 400px; height: 400px;
-    background-color: rgba(43, 0, 113, 0.1); /* Brillo índigo */
-    bottom: 20%; right: 5%;
+    width: 450px; height: 450px;
+    background-color: rgba(43, 0, 113, 0.12); 
+    bottom: 10%; right: -5%;
     animation-delay: 2s;
 }
 
 @keyframes flotar {
     0% { transform: translateY(0px) scale(1); }
-    100% { transform: translateY(30px) scale(1.1); }
+    100% { transform: translateY(40px) scale(1.1); }
 }
-/* -------------------------------------------------------- */
 
+/* --- ESTRUCTURA GENERAL --- */
 .barra-navegacion, .pie-pagina {
     background-color: var(--deep-indigo);
     color: var(--pergamino);
-    padding: 10px 0;
-    font-size: 0.9rem;
+    padding: 12px 0;
+    font-size: 0.95rem;
     letter-spacing: 2px;
 }
 
+.pie-pagina p {
+    margin: 5px 0;
+}
+
 .pie-pagina {
-    padding: 20px 0;
-    margin-top: 40px;
+    padding: 25px 0;
+    margin-top: 50px;
+    border-top: 3px solid var(--oro);
 }
 
 header {
@@ -83,8 +95,8 @@ header {
     width: 120px;
     height: auto;
     border-radius: 50%;
-    box-shadow: 0 8px 20px rgba(43, 0, 113, 0.4);
-    border: 3px solid var(--oro); /* Borde dorado al logo */
+    box-shadow: 0 8px 20px rgba(43, 0, 113, 0.3);
+    background-color: transparent;
 }
 
 h1, h2, .titulo-modal {
@@ -96,7 +108,7 @@ h1, h2, .titulo-modal {
     font-size: 3.8rem;
     margin: 0;
     letter-spacing: 3px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 2px 2px 4px rgba(43,0,113,0.1);
 }
 
 .catalogo {
@@ -107,10 +119,10 @@ h1, h2, .titulo-modal {
     padding: 30px 20px;
 }
 
+/* --- TARJETAS CON LAURELES --- */
 .tarjeta {
-    background-color: rgba(255, 255, 255, 0.85);
-    /* BORDE ESTILO MARCO ELEGANTE */
-    border: 6px double var(--lavanda);
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--lavanda);
     border-radius: 12px;
     padding: 25px;
     width: 280px;
@@ -118,15 +130,35 @@ h1, h2, .titulo-modal {
     display: flex;
     flex-direction: column;
     align-items: center;
-    backdrop-filter: blur(10px);
-    /* SOMBRA PROFUNDA */
-    box-shadow: 0 15px 35px rgba(43, 0, 113, 0.15), inset 0 0 15px rgba(239, 191, 4, 0.05);
+    position: relative; /* Necesario para la marca de agua */
+    box-shadow: 0 10px 25px rgba(43, 0, 113, 0.1);
+}
+
+/* MARCA DE AGUA DE LAURELES */
+.tarjeta::before {
+    content: "";
+    position: absolute;
+    top: 5px; left: 5px; right: 5px; bottom: 5px;
+    /* AQUÍ SE CONECTARÁ TU IMAGEN DE LAURELES */
+    background-image: url('laureles.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.15; /* Sutil para no estorbar el texto */
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Mantiene el texto encima de los laureles */
+.tarjeta > * {
+    z-index: 1;
+    position: relative;
 }
 
 .tarjeta:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     border-color: var(--oro);
-    box-shadow: 0 20px 40px rgba(43, 0, 113, 0.25), inset 0 0 20px rgba(239, 191, 4, 0.15);
+    box-shadow: 0 15px 35px rgba(43, 0, 113, 0.2);
 }
 
 .tarjeta h2 {
@@ -137,15 +169,14 @@ h1, h2, .titulo-modal {
 .imagen-placeholder {
     width: 100%;
     height: 200px;
-    background-color: var(--pergamino);
+    background-color: rgba(241, 233, 210, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
     margin: 15px 0;
     color: var(--deep-indigo);
-    border: 1px dashed var(--deep-indigo);
-    box-shadow: inset 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px dashed var(--lavanda);
 }
 
 .precio {
@@ -175,24 +206,20 @@ button {
     font-family: 'Josefin Sans', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 4px 10px rgba(239, 191, 4, 0.3);
 }
 
 button:hover:not([disabled]) {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(239, 191, 4, 0.5);
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(239, 191, 4, 0.4);
 }
 
 button:disabled {
-    background-color: #dcdcdc;
+    background-color: #e0e0e0;
     color: #888;
     cursor: not-allowed;
-    box-shadow: none;
 }
 
 .tarjeta.agotado {
-    position: relative;
-    overflow: hidden;
     opacity: 0.7;
 }
 
@@ -253,7 +280,6 @@ button:disabled {
     background-color: var(--pergamino);
     margin: 12% auto;
     padding: 30px;
-    border: 4px double var(--lavanda);
     border-radius: 12px;
     width: 85%;
     max-width: 400px;
@@ -277,33 +303,4 @@ button:disabled {
     border-bottom: 2px solid var(--lavanda);
     padding-bottom: 12px;
     margin-top: 0;
-}
-
-.item-carrito {
-    display: flex;
-    justify-content: space-between;
-    margin: 15px 0;
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.total-modal {
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--deep-indigo);
-    border-top: 2px solid var(--lavanda);
-    padding-top: 15px;
-    margin-top: 25px;
-}
-
-.btn-whatsapp-modal {
-    background-color: var(--deep-indigo);
-    color: var(--pergamino);
-    margin-top: 15px;
-    box-shadow: 0 4px 10px rgba(43, 0, 113, 0.3);
-}
-
-.btn-whatsapp-modal:hover {
-    background-color: #1a0045;
-    box-shadow: 0 5px 15px rgba(43, 0, 113, 0.5);
 }
