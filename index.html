@@ -2,20 +2,49 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alqimia Luma | Perfumes</title>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Alqimia Luma</title>
 </head>
 <body>
+
+    <!-- Capa 1: Tus dibujos de alquimia de fondo -->
+    <div class="fondo-alquimia"></div>
+    <!-- Capa 2: Las estrellas pequeñas y brillantes -->
     <div class="fondo-magico"></div>
+
+    <nav class="barra-navegacion">
+        <p>ENVÍOS INMEDIATOS - CALIDAD PREMIUM</p>
+    </nav>
+
+    <!-- Aquí está la LUNA GIGANTE -->
+    <div id="carrito-flotante" onclick="abrirCarrito()">
+        <span class="luna-gigante">🌙</span> Pedido (<span id="contador">0</span>)
+    </div>
+
+    <div id="modal-carrito" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarCarrito()">&times;</span>
+            <h2 class="titulo-modal">Tu Pedido Mágico</h2>
+            <div id="lista-carrito"></div>
+            <p class="total-modal">Total: $<span id="total-precio">0</span></p>
+            <button class="btn-whatsapp-modal" onclick="enviarPedido()">Terminar pedido en WhatsApp 📲</button>
+        </div>
+    </div>
+
     <header>
-        <img src="Logo.png" alt="Logo" class="logo-empresa">
+        <img src="logo.png" alt="Logo Alqimia Luma" class="logo-empresa">
         <h1 class="titulo-gigante">ALQIMIA LUMA</h1>
     </header>
+
     <div class="catalogo" id="contenedor-catalogo"></div>
+
     <footer class="pie-pagina">
-        <p>📞 Tel: +52 222 123 4567 | ✉️ contacto@alqimialuma.com</p>
+        <p>📞 Tel: +52 222 123 4567 &nbsp; | &nbsp; ✉️ Email: contacto@alqimialuma.com</p>
+        <p>&copy; 2026 Alqimia Luma. Todos los derechos reservados.</p>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
