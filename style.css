@@ -17,105 +17,78 @@ body {
     overflow-x: hidden; 
 }
 
-.fondo-alquimia {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
-    background-image: url('elementos.png');
-    background-size: 350px; opacity: 0.15; background-repeat: repeat;
-}
-
-/* --- ESTRELLAS ASIMÉTRICAS, SEPARADAS Y OPACAS --- */
+/* --- CONTENEDOR ESTRELLAS JS --- */
 .fondo-magico {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;
-    /* Tres capas de estrellas para romper la simetría */
-    background-image: 
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0 Z' fill='%23EFBF04'/%3E%3C/svg%3E"),
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0 Z' fill='%23D3D3FF'/%3E%3C/svg%3E"),
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0 Z' fill='%23EFBF04'/%3E%3C/svg%3E");
-    /* Tamaños grandes, medianos y pequeños intercalados */
-    background-size: 150px 180px, 90px 110px, 250px 220px;
-    background-position: 10px 20px, 60px 80px, 120px 40px;
-    opacity: 0.25; /* Fijamente opacas, sin parpadeo molesto */
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden;
+}
+.estrella-js {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 /* --- ESTRUCTURA GENERAL --- */
 .barra-navegacion, .pie-pagina {
     background-color: var(--deep-indigo); color: var(--pergamino);
-    padding: 12px 0; font-size: 0.95rem; letter-spacing: 2px;
+    padding: 12px 0; font-size: 0.95rem; letter-spacing: 2px; width: 100%; box-sizing: border-box;
 }
 .pie-pagina p { margin: 5px 0; }
 .pie-pagina { padding: 25px 0; margin-top: 50px; border-top: 2px solid var(--lavanda); }
 
-header { display: flex; justify-content: center; align-items: center; gap: 20px; padding: 40px 20px 20px 20px; }
+header { display: flex; justify-content: center; align-items: center; gap: 20px; padding: 40px 20px 20px 20px; box-sizing: border-box; }
 
-.logo-empresa {
-    width: 120px; height: auto; border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(43, 0, 113, 0.2); /* Sombra elegante, no exagerada */
-}
+.logo-empresa { width: 120px; height: auto; border-radius: 50%; box-shadow: 0 4px 15px rgba(43, 0, 113, 0.2); }
 
-/* Título nítido y limpio, sin ese brillo que lo hacía ver feo */
 .titulo-gigante {
     font-family: 'Playfair Display', serif;
     font-size: 3.5rem; margin: 0; letter-spacing: 3px;
-    color: var(--deep-indigo);
-    text-shadow: 1px 1px 2px rgba(43, 0, 113, 0.1); 
+    color: var(--deep-indigo); text-shadow: 1px 1px 2px rgba(43, 0, 113, 0.1); 
 }
 
 h2, .titulo-modal { font-family: 'Playfair Display', serif; color: var(--deep-indigo); }
 
 .catalogo { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; padding: 30px 20px; }
 
-/* --- TARJETAS INTERCALANDO COLORES --- */
+/* --- TARJETAS --- */
 .tarjeta {
     background-color: rgba(255, 255, 255, 0.95);
-    border: 2px solid var(--lavanda); /* Borde lavanda, no todo oro */
-    border-radius: 12px; padding: 25px; width: 280px;
+    border: 2px solid var(--lavanda); border-radius: 12px; padding: 25px; width: 280px;
     transition: all 0.4s ease-in-out; display: flex; flex-direction: column; align-items: center; position: relative; 
     box-shadow: 0 8px 20px rgba(43, 0, 113, 0.1);
 }
 
-.tarjeta:hover {
-    transform: translateY(-8px);
-    border-color: var(--deep-indigo);
-    box-shadow: 0 12px 30px rgba(43, 0, 113, 0.25);
-}
+.tarjeta:hover { transform: translateY(-8px); border-color: var(--deep-indigo); box-shadow: 0 12px 30px rgba(43, 0, 113, 0.25); }
 
 .tarjeta > * { z-index: 1; position: relative; }
 .tarjeta h2 { margin-top: 0; font-size: 1.6rem; }
 
 .imagen-placeholder {
-    width: 100%; height: 200px; background-color: rgba(241, 233, 210, 0.4);
-    display: flex; align-items: center; justify-content: center; border-radius: 8px; margin: 15px 0;
-    color: var(--deep-indigo); border: 1px dashed var(--lavanda);
+    width: 100%; height: 200px; background-color: rgba(241, 233, 210, 0.4); display: flex; align-items: center; justify-content: center; border-radius: 8px; margin: 15px 0; color: var(--deep-indigo); border: 1px dashed var(--lavanda);
 }
 
 .precio { font-size: 26px; font-weight: 600; color: var(--deep-indigo); margin: 10px 0; }
 .stock { color: #666; font-size: 14px; margin-bottom: 20px; }
 
+/* --- BOTÓN CON BRILLO DORADO INTENSO --- */
 button {
     background-color: var(--oro); color: var(--deep-indigo); border: none; padding: 14px 20px;
     border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; width: 100%; transition: 0.3s;
     font-family: 'Josefin Sans', sans-serif; text-transform: uppercase; letter-spacing: 1px;
 }
-button:hover:not([disabled]) { transform: scale(1.05); box-shadow: 0 6px 15px rgba(239, 191, 4, 0.4); }
+button:hover:not([disabled]) { 
+    transform: scale(1.05); 
+    box-shadow: 0 0 25px rgba(239, 191, 4, 1), 0 0 10px rgba(239, 191, 4, 0.5); /* Sombras super brillantes */
+}
 button:disabled { background-color: #e0e0e0; color: #888; cursor: not-allowed; box-shadow: none; }
 
-/* SELLO DE AGOTADO */
 .tarjeta.agotado { opacity: 0.8; }
 .tarjeta.agotado::after {
-    content: "AGOTADO"; position: absolute; top: 45%; left: -15%; width: 130%;
-    background-color: var(--deep-indigo); color: var(--oro); font-size: 1.5rem; font-weight: 600;
-    font-family: 'Josefin Sans', sans-serif; transform: rotate(-25deg); text-align: center; padding: 10px 0;
-    box-shadow: 0 4px 15px rgba(43, 0, 113, 0.4); z-index: 5; pointer-events: none; letter-spacing: 4px;
+    content: "AGOTADO"; position: absolute; top: 45%; left: -15%; width: 130%; background-color: var(--deep-indigo); color: var(--oro); font-size: 1.5rem; font-weight: 600; font-family: 'Josefin Sans', sans-serif; transform: rotate(-25deg); text-align: center; padding: 10px 0; box-shadow: 0 4px 15px rgba(43, 0, 113, 0.4); z-index: 5; pointer-events: none; letter-spacing: 4px;
 }
 
-/* --- CARRITO FLOTANTE (DEEP INDIGO) --- */
+/* --- CARRITO FLOTANTE --- */
 #carrito-flotante {
-    position: fixed; top: 60px; right: 20px;
-    background-color: var(--deep-indigo); /* Intercalando colores */
-    color: var(--oro);
-    padding: 10px 25px; border-radius: 40px; font-size: 18px; font-weight: 600; cursor: pointer;
-    box-shadow: 0 6px 20px rgba(43, 0, 113, 0.4); z-index: 1000; transition: 0.3s;
-    border: 2px solid var(--lavanda); display: flex; align-items: center; gap: 10px; 
+    position: fixed; top: 60px; right: 20px; background-color: var(--deep-indigo); color: var(--oro); padding: 10px 25px; border-radius: 40px; font-size: 18px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(43, 0, 113, 0.4); z-index: 1000; transition: 0.3s; border: 2px solid var(--lavanda); display: flex; align-items: center; gap: 10px; 
 }
 
 .luna-gigante { font-size: 3rem; filter: drop-shadow(0px 0px 5px rgba(239, 191, 4, 0.3)); }
@@ -129,6 +102,14 @@ button:disabled { background-color: #e0e0e0; color: #888; cursor: not-allowed; b
 .titulo-modal { border-bottom: 2px solid var(--lavanda); padding-bottom: 12px; margin-top: 0; }
 .item-carrito { display: flex; justify-content: space-between; margin: 15px 0; font-size: 16px; font-weight: 600; }
 .total-modal { font-size: 22px; font-weight: 600; color: var(--deep-indigo); border-top: 2px solid var(--lavanda); padding-top: 15px; margin-top: 25px; }
-
 .btn-whatsapp-modal { background-color: var(--oro); color: var(--deep-indigo); margin-top: 15px; }
-.btn-whatsapp-modal:hover { background-color: #d4a700; }
+.btn-whatsapp-modal:hover { background-color: #d4a700; box-shadow: 0 0 20px rgba(239, 191, 4, 0.8); }
+
+/* --- ARREGLO PARA CELULARES (Evita que se corte la línea) --- */
+@media (max-width: 600px) {
+    header { flex-direction: column; padding-top: 80px; }
+    .titulo-gigante { font-size: 2.2rem; text-align: center; }
+    #carrito-flotante { top: 10px; right: 10px; padding: 5px 15px; font-size: 14px; }
+    .luna-gigante { font-size: 2rem; }
+    .tarjeta { width: 90%; max-width: 300px; }
+}
