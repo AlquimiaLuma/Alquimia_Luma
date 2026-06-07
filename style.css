@@ -17,14 +17,32 @@ body {
     overflow-x: hidden; 
 }
 
-/* --- CONTENEDOR ESTRELLAS JS --- */
+/* --- CONTENEDOR MÁGICO (Estrellas + Imágenes) --- */
 .fondo-magico {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden;
 }
+
 .estrella-js {
     position: absolute;
     background-size: contain;
     background-repeat: no-repeat;
+    animation: latido-estrella 3s infinite alternate ease-in-out;
+}
+
+.imagen-js {
+    position: absolute;
+    animation: latido-imagen 5s infinite alternate ease-in-out;
+}
+
+/* Animaciones de palpitar y movimiento */
+@keyframes latido-estrella {
+    0% { opacity: 0.1; transform: scale(0.8); }
+    100% { opacity: 0.8; transform: scale(1.3); }
+}
+
+@keyframes latido-imagen {
+    0% { opacity: 0.05; transform: scale(0.9) rotate(var(--rotacion)); }
+    100% { opacity: 0.25; transform: scale(1.1) rotate(var(--rotacion)); } 
 }
 
 /* --- ESTRUCTURA GENERAL --- */
@@ -77,7 +95,7 @@ button {
 }
 button:hover:not([disabled]) { 
     transform: scale(1.05); 
-    box-shadow: 0 0 25px rgba(239, 191, 4, 1), 0 0 10px rgba(239, 191, 4, 0.5); /* Sombras super brillantes */
+    box-shadow: 0 0 25px rgba(239, 191, 4, 1), 0 0 10px rgba(239, 191, 4, 0.5); 
 }
 button:disabled { background-color: #e0e0e0; color: #888; cursor: not-allowed; box-shadow: none; }
 
@@ -105,7 +123,6 @@ button:disabled { background-color: #e0e0e0; color: #888; cursor: not-allowed; b
 .btn-whatsapp-modal { background-color: var(--oro); color: var(--deep-indigo); margin-top: 15px; }
 .btn-whatsapp-modal:hover { background-color: #d4a700; box-shadow: 0 0 20px rgba(239, 191, 4, 0.8); }
 
-/* --- ARREGLO PARA CELULARES (Evita que se corte la línea) --- */
 @media (max-width: 600px) {
     header { flex-direction: column; padding-top: 80px; }
     .titulo-gigante { font-size: 2.2rem; text-align: center; }
