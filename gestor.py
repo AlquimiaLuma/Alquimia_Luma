@@ -33,7 +33,6 @@ def main():
 
         if opcion == '1':
             mostrar_inventario(datos)
-            
         elif opcion == '2':
             print("\n-- AGREGAR PERFUME --")
             nombre = input("Nombre del perfume: ")
@@ -41,65 +40,46 @@ def main():
                 precio = int(input("Precio de venta (solo número): "))
                 stock = int(input("Cantidad disponible (solo número): "))
             except ValueError:
-                print("❌ Error: El precio y el stock deben ser números enteros. Se canceló.\n")
+                print("❌ Error: El precio y el stock deben ser números enteros.\n")
                 continue
-                
             desc = input("Descripción corta: ")
             nuevo = {
-                "id": len(datos) + 1,
-                "nombre": nombre,
-                "precio": precio,
-                "stock": stock,
-                "desc": desc,
-                "imagen": "📸 Foto del Perfume"
+                "id": len(datos) + 1, "nombre": nombre, "precio": precio,
+                "stock": stock, "desc": desc, "imagen": "📸 Foto del Perfume"
             }
             datos.append(nuevo)
             guardar_datos(datos)
             print(f"✅ ¡{nombre} agregado al catálogo!\n")
-            
         elif opcion == '3':
             mostrar_inventario(datos)
             try:
-                idx = int(input("Escribe solo el número (ID) del perfume a modificar: "))
+                idx = int(input("Escribe el ID a modificar: "))
                 if 0 <= idx < len(datos):
-                    print("(Presiona Enter sin escribir nada si no quieres cambiar ese valor)")
+                    print("(Presiona Enter si no quieres cambiar el valor)")
                     n_precio = input(f"Nuevo precio (actual: ${datos[idx]['precio']}): ")
                     n_stock = input(f"Nuevo stock (actual: {datos[idx]['stock']}): ")
-                    
                     if n_precio: datos[idx]['precio'] = int(n_precio)
                     if n_stock: datos[idx]['stock'] = int(n_stock)
                     guardar_datos(datos)
-                    print(f"✅ ¡{datos[idx]['nombre']} actualizado!\n")
-                else:
-                    print("❌ Ese número de ID no existe.\n")
+                    print("✅ ¡Actualizado!\n")
             except ValueError:
-                print("❌ Error: Escribe únicamente números.\n")
-                
+                print("❌ Error: Solo números.\n")
         elif opcion == '4':
             mostrar_inventario(datos)
             try:
-                idx = int(input("Escribe el ID del perfume que quieres borrar: "))
+                idx = int(input("ID del perfume a borrar: "))
                 if 0 <= idx < len(datos):
                     eliminado = datos.pop(idx)
                     guardar_datos(datos)
-                    print(f"🗑️ ¡{eliminado['nombre']} eliminado del catálogo!\n")
-                else:
-                    print("❌ Ese número de ID no existe.\n")
+                    print(f"🗑️ ¡{eliminado['nombre']} eliminado!\n")
             except ValueError:
-                print("❌ Error: Escribe únicamente números.\n")
-                
+                print("❌ Error.\n")
         elif opcion == '5':
-            print("\nConectando con GitHub... subiendo actualizaciones...")
+            print("\nSubiendo actualizaciones...")
             os.system("git add .")
-            os.system('git commit -m "Actualizacion automatica de inventario"')
+            os.system('git commit -m "Actualizacion automatica"')
             os.system("git push")
-            print("🚀 ¡LISTO! Tu página web ha sido actualizada en internet.\n")
-            
-        elif opcion == '6':
-            print("Cerrando gestor...")
-            break
-        else:
-            print("❌ Opción no válida.\n")
+            print("🚀 ¡LISTO! Página actualizada.\n")
+        elif opcion == '6': break
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": main()

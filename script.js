@@ -10,11 +10,9 @@ fetch('productos.json')
         
         datos.forEach(producto => {
             let esAgotado = producto.stock <= 0 ? "agotado" : "";
-            
             let botonHTML = producto.stock > 0 
                 ? `<button onclick="agregarAlCarrito('${producto.nombre}', ${producto.precio})">Comprar ahora</button>`
                 : `<button disabled>No disponible</button>`;
-                
             let textoStock = producto.stock > 0 ? `Disponibles: ${producto.stock}` : "Agotado";
 
             contenedor.innerHTML += `
@@ -45,7 +43,6 @@ function agregarAlCarrito(nombre, precio) {
 function abrirCarrito() {
     let divLista = document.getElementById("lista-carrito");
     divLista.innerHTML = ""; 
-    
     if (totalArticulos === 0) {
         divLista.innerHTML = "<p>Aún no has agregado ninguna esencia mágica.</p>";
     } else {
@@ -80,8 +77,8 @@ function enviarPedido() {
     }
     mensaje += "%0A*Total a pagar: $" + totalPrecio + "*";
     
-    // --- IMPORTANTE: REEMPLAZA ESTE TEXTO POR TU NÚMERO DE WHATSAPP ---
-    let numeroWhatsApp = "522221234567"; 
+    // Configurado con la lada +52 para México y el número correcto
+    let numeroWhatsApp = "525649314335"; 
     
     window.open("https://wa.me/" + numeroWhatsApp + "?text=" + mensaje, "_blank");
 }
